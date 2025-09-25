@@ -6,10 +6,9 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Show;
 use App\Palestra;
 use App\JogoEsportivo;
+use App\Evento;
 use App\EventoRepository;
 
-// Instancia o repositório para gerenciar os eventos.
-$repository = new EventoRepository();
 
 function exibirMenu(): void
 {
