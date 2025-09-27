@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 
 class JogoEsportivo extends Evento
@@ -16,6 +15,6 @@ class JogoEsportivo extends Evento
 
     public function exibirDetalhes(): string
     {
-        return "Jogo Esportivo: {$this->nome}\nEquipes: {$this->equipeCasa} vs {$this->equipeVisitante}\nData: {$this->data}\nLocal: {$this->local}";
+        return "Jogo Esportivo: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nCasa: {$this->equipeCasa}\nVisitante: {$this->equipeVisitante}\n";
     }
 }

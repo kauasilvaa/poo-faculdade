@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd751713988987e9331980363e24189ce
+class ComposerStaticInit323bb1182268ee7951a3aca5bf008e94
 {
     public static $prefixLengthsPsr4 = array (
         'A' => 
@@ -21,15 +21,24 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
     );
 
     public static $classMap = array (
+        'App\\Evento' => __DIR__ . '/../..' . '/src/Evento.php',
+        'App\\EventoRepository' => __DIR__ . '/../..' . '/src/EventoRepository.php',
+        'App\\ExposicaoArte' => __DIR__ . '/../..' . '/src/ExposicaoArte.php',
+        'App\\FeiraCultural' => __DIR__ . '/../..' . '/src/FeiraCultural.php',
+        'App\\Hackathon' => __DIR__ . '/../..' . '/src/Hackathon.php',
+        'App\\JogoEsportivo' => __DIR__ . '/../..' . '/src/JogoEsportivo.php',
+        'App\\Palestra' => __DIR__ . '/../..' . '/src/Palestra.php',
+        'App\\Show' => __DIR__ . '/../..' . '/src/Show.php',
+        'App\\Workshop' => __DIR__ . '/../..' . '/src/Workshop.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd751713988987e9331980363e24189ce::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd751713988987e9331980363e24189ce::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitd751713988987e9331980363e24189ce::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit323bb1182268ee7951a3aca5bf008e94::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit323bb1182268ee7951a3aca5bf008e94::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit323bb1182268ee7951a3aca5bf008e94::$classMap;
 
         }, null, ClassLoader::class);
     }

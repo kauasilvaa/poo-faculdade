@@ -1,14 +1,14 @@
 <?php
-
-// Inclui o autoloader do Composer.
 require __DIR__ . '/vendor/autoload.php';
 
 use App\Show;
 use App\Palestra;
 use App\JogoEsportivo;
-use App\Evento;
+use App\Hackathon;
+use App\Workshop;
+use App\FeiraCultural;
+use App\ExposicaoArte;
 use App\EventoRepository;
-
 
 function exibirMenu(): void
 {
@@ -16,14 +16,19 @@ function exibirMenu(): void
     echo "1. Cadastrar Show\n";
     echo "2. Cadastrar Palestra\n";
     echo "3. Cadastrar Jogo Esportivo\n";
-    echo "4. Listar Eventos\n";
-    echo "5. Sair\n";
+    echo "4. Cadastrar Hackathon\n";
+    echo "5. Cadastrar Workshop\n";
+    echo "6. Cadastrar Feira Cultural\n";
+    echo "7. Cadastrar Exposição de Arte\n";
+    echo "8. Listar Eventos\n";
+    echo "9. Sair\n";
 }
 
-// Loop principal da aplicação.
+$repository = new EventoRepository();
+
 while (true) {
     exibirMenu();
-    $opcao = (int) readline("Escolha uma opção: "); // type casting
+    $opcao = (int) readline("Escolha uma opção: ");
 
     switch ($opcao) {
         case 1:
@@ -35,6 +40,7 @@ while (true) {
 
             $show = new Show($nome, $data, $local, $artista);
             $repository->adicionar($show);
+            echo "✅ Show cadastrado!\n";
             break;
 
         case 2:
@@ -47,6 +53,7 @@ while (true) {
             
             $palestra = new Palestra($nome, $data, $local, $palestrante, $tema);
             $repository->adicionar($palestra);
+            echo "✅ Palestra cadastrada!\n";
             break;
 
         case 3:
@@ -59,9 +66,62 @@ while (true) {
             
             $jogo = new JogoEsportivo($nome, $data, $local, $equipeCasa, $equipeVisitante);
             $repository->adicionar($jogo);
+            echo "✅ Jogo esportivo cadastrado!\n";
             break;
 
         case 4:
+            echo "\n--- Cadastro de Hackathon ---\n";
+            $nome = readline("Nome do evento: ");
+            $data = readline("Data (DD/MM/AAAA): ");
+            $local = readline("Local: ");
+            $tema = readline("Tema/Desafio: ");
+            $participantes = readline("Participantes: ");
+
+            $hackathon = new Hackathon($nome, $data, $local, $tema, $participantes);
+            $repository->adicionar($hackathon);
+            echo "✅ Hackathon cadastrado!\n";
+            break;
+
+        case 5:
+            echo "\n--- Cadastro de Workshop ---\n";
+            $nome = readline("Nome do workshop: ");
+            $data = readline("Data (DD/MM/AAAA): ");
+            $local = readline("Local: ");
+            $instrutor = readline("Instrutor: ");
+            $carga = readline("Carga horária: ");
+
+            $workshop = new Workshop($nome, $data, $local, $instrutor, $carga);
+            $repository->adicionar($workshop);
+            echo "✅ Workshop cadastrado!\n";
+            break;
+
+        case 6:
+            echo "\n--- Cadastro de Feira Cultural ---\n";
+            $nome = readline("Nome da feira: ");
+            $data = readline("Data (DD/MM/AAAA): ");
+            $local = readline("Local: ");
+            $tema = readline("Tema da feira: ");
+            $expositores = (int) readline("Número de expositores: ");
+
+            $feira = new FeiraCultural($nome, $data, $local, $tema, $expositores);
+            $repository->adicionar($feira);
+            echo "✅ Feira Cultural cadastrada!\n";
+            break;
+
+        case 7:
+            echo "\n--- Cadastro de Exposição de Arte ---\n";
+            $nome = readline("Nome da exposição: ");
+            $data = readline("Data (DD/MM/AAAA): ");
+            $local = readline("Local: ");
+            $artistaOuColetiva = readline("Artista ou 'Coletiva': ");
+            $curador = readline("Curadoria: ");
+
+            $expo = new ExposicaoArte($nome, $data, $local, $artistaOuColetiva, $curador);
+            $repository->adicionar($expo);
+            echo "✅ Exposição de Arte cadastrada!\n";
+            break;
+
+        case 8:
             echo "\n--- Lista de Eventos Cadastrados ---\n";
             $eventos = $repository->listarTodos();
             if (empty($eventos)) {
@@ -75,7 +135,7 @@ while (true) {
             }
             break;
 
-        case 5:
+        case 9:
             echo "Saindo...\n";
             exit;
 

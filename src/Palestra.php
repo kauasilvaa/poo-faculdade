@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 
 class Palestra extends Evento
@@ -16,6 +15,6 @@ class Palestra extends Evento
 
     public function exibirDetalhes(): string
     {
-        return "Palestra: {$this->nome}\nPalestrante: {$this->palestrante}\nTema: {$this->tema}\nData: {$this->data}\nLocal: {$this->local}";
+        return "Palestra: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nPalestrante: {$this->palestrante}\nTema: {$this->tema}\n";
     }
 }

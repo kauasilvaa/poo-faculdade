@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 
 class Show extends Evento
@@ -14,6 +13,6 @@ class Show extends Evento
 
     public function exibirDetalhes(): string
     {
-        return "Show: {$this->nome}\nArtista: {$this->artista}\nData: {$this->data}\nLocal: {$this->local}";
+        return "Show: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nArtista: {$this->artista}\n";
     }
 }

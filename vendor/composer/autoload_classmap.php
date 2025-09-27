@@ -6,5 +6,14 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Evento' => $baseDir . '/src/Evento.php',
+    'App\\EventoRepository' => $baseDir . '/src/EventoRepository.php',
+    'App\\ExposicaoArte' => $baseDir . '/src/ExposicaoArte.php',
+    'App\\FeiraCultural' => $baseDir . '/src/FeiraCultural.php',
+    'App\\Hackathon' => $baseDir . '/src/Hackathon.php',
+    'App\\JogoEsportivo' => $baseDir . '/src/JogoEsportivo.php',
+    'App\\Palestra' => $baseDir . '/src/Palestra.php',
+    'App\\Show' => $baseDir . '/src/Show.php',
+    'App\\Workshop' => $baseDir . '/src/Workshop.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
 );
