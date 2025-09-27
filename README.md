@@ -52,4 +52,3 @@ Os eventos ficam só na memória enquanto o programa está aberto (não salva em
 
 É um projeto simples, mas serve pra praticar classes, herança, polimorfismo e autoload com Composer.
 
-👉 Esse foi nosso projetinho de POO no 1º termo, focado em treinar a base.
