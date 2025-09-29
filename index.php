@@ -21,7 +21,8 @@ function exibirMenu(): void
     echo "6. Cadastrar Feira Cultural\n";
     echo "7. Cadastrar Exposição de Arte\n";
     echo "8. Listar Eventos\n";
-    echo "9. Sair\n";
+    echo "9. Gerar Relatório\n";
+    echo "10. Sair\n";
 }
 
 $repository = new EventoRepository();
@@ -136,6 +137,19 @@ while (true) {
             break;
 
         case 9:
+            echo "\n--- Relatório de Eventos ---\n";
+            $relatorio = $repository->gerarRelatorio();
+            echo $relatorio;
+
+            // Perguntar se deseja salvar em arquivo
+            $salvar = strtolower(readline("Deseja salvar em 'relatorio.txt'? (s/n): "));
+            if ($salvar === 's') {
+                file_put_contents("relatorio.txt", $relatorio);
+                echo "📄 Relatório salvo em relatorio.txt!\n";
+            }
+            break;
+
+        case 10:
             echo "Saindo...\n";
             exit;
 
