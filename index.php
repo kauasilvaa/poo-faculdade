@@ -1,14 +1,14 @@
 <?php
+// index.php
+
 require __DIR__ . '/vendor/autoload.php';
 
+use App\EventoRepository;
 use App\Show;
 use App\Palestra;
 use App\JogoEsportivo;
-use App\Hackathon;
-use App\Workshop;
-use App\FeiraCultural;
-use App\ExposicaoArte;
-use App\EventoRepository;
+
+$repo = new EventoRepository();
 
 function exibirMenu(): void
 {
@@ -16,22 +16,21 @@ function exibirMenu(): void
     echo "1. Cadastrar Show\n";
     echo "2. Cadastrar Palestra\n";
     echo "3. Cadastrar Jogo Esportivo\n";
-    echo "4. Cadastrar Hackathon\n";
-    echo "5. Cadastrar Workshop\n";
-    echo "6. Cadastrar Feira Cultural\n";
-    echo "7. Cadastrar Exposição de Arte\n";
-    echo "8. Listar Eventos\n";
-    echo "9. Gerar Relatório\n";
+    echo "4. Listar Eventos\n";
+    echo "5. Remover Evento (por índice)\n";
+    echo "6. Remover Evento (por nome)\n";
+    echo "7. Editar Evento\n";
+    echo "8. Buscar Eventos\n";
+    echo "9. Alterar Status de Evento\n";
     echo "10. Sair\n";
 }
 
-$repository = new EventoRepository();
-
 while (true) {
     exibirMenu();
-    $opcao = (int) readline("Escolha uma opção: ");
+    $op = (int) readline("Escolha uma opção: ");
 
-    switch ($opcao) {
+    switch ($op) {
+
         case 1:
             echo "\n--- Cadastro de Show ---\n";
             $nome = readline("Nome do show: ");
@@ -40,113 +39,156 @@ while (true) {
             $artista = readline("Artista/Banda: ");
 
             $show = new Show($nome, $data, $local, $artista);
-            $repository->adicionar($show);
-            echo "✅ Show cadastrado!\n";
+            $repo->adicionar($show);
             break;
 
         case 2:
-            echo "\n--- Cadastro de Palestra ---\n";
+            echo "\n--- Cadastro da Palestra ---\n";
             $nome = readline("Título da palestra: ");
             $data = readline("Data (DD/MM/AAAA): ");
             $local = readline("Local: ");
             $palestrante = readline("Palestrante: ");
             $tema = readline("Tema: ");
-            
-            $palestra = new Palestra($nome, $data, $local, $palestrante, $tema);
-            $repository->adicionar($palestra);
-            echo "✅ Palestra cadastrada!\n";
+
+            $p = new Palestra($nome, $data, $local, $palestrante, $tema);
+            $repo->adicionar($p);
             break;
 
         case 3:
-            echo "\n--- Cadastro de Jogo Esportivo ---\n";
+            echo "\n--- Cadastro do Jogo Esportivo ---\n";
             $nome = readline("Nome do jogo: ");
             $data = readline("Data (DD/MM/AAAA): ");
             $local = readline("Local: ");
-            $equipeCasa = readline("Equipe da casa: ");
-            $equipeVisitante = readline("Equipe visitante: ");
-            
-            $jogo = new JogoEsportivo($nome, $data, $local, $equipeCasa, $equipeVisitante);
-            $repository->adicionar($jogo);
-            echo "✅ Jogo esportivo cadastrado!\n";
+            $casa = readline("Equipe da casa: ");
+            $visitante = readline("Equipe visitante: ");
+
+            $j = new JogoEsportivo($nome, $data, $local, $casa, $visitante);
+            $repo->adicionar($j);
             break;
 
         case 4:
-            echo "\n--- Cadastro de Hackathon ---\n";
-            $nome = readline("Nome do evento: ");
-            $data = readline("Data (DD/MM/AAAA): ");
-            $local = readline("Local: ");
-            $tema = readline("Tema/Desafio: ");
-            $participantes = readline("Participantes: ");
+            echo "\n--- Lista de Eventos ---\n";
+            $lista = $repo->listarTodos();
 
-            $hackathon = new Hackathon($nome, $data, $local, $tema, $participantes);
-            $repository->adicionar($hackathon);
-            echo "✅ Hackathon cadastrado!\n";
+            if (empty($lista)) {
+                echo "Nenhum evento cadastrado.\n";
+                break;
+            }
+
+            foreach ($lista as $i => $ev) {
+                echo "[$i]\n" . $ev->exibirDetalhes() . "\n------------------------\n";
+            }
             break;
 
         case 5:
-            echo "\n--- Cadastro de Workshop ---\n";
-            $nome = readline("Nome do workshop: ");
-            $data = readline("Data (DD/MM/AAAA): ");
-            $local = readline("Local: ");
-            $instrutor = readline("Instrutor: ");
-            $carga = readline("Carga horária: ");
-
-            $workshop = new Workshop($nome, $data, $local, $instrutor, $carga);
-            $repository->adicionar($workshop);
-            echo "✅ Workshop cadastrado!\n";
+            echo "\n--- Remover por índice ---\n";
+            $idx = (int) readline("Índice: ");
+            $repo->removerPorIndice($idx);
             break;
 
         case 6:
-            echo "\n--- Cadastro de Feira Cultural ---\n";
-            $nome = readline("Nome da feira: ");
-            $data = readline("Data (DD/MM/AAAA): ");
-            $local = readline("Local: ");
-            $tema = readline("Tema da feira: ");
-            $expositores = (int) readline("Número de expositores: ");
-
-            $feira = new FeiraCultural($nome, $data, $local, $tema, $expositores);
-            $repository->adicionar($feira);
-            echo "✅ Feira Cultural cadastrada!\n";
+            echo "\n--- Remover por nome ---\n";
+            $nome = readline("Nome exato do evento: ");
+            $repo->removerPorNome($nome);
             break;
 
         case 7:
-            echo "\n--- Cadastro de Exposição de Arte ---\n";
-            $nome = readline("Nome da exposição: ");
-            $data = readline("Data (DD/MM/AAAA): ");
-            $local = readline("Local: ");
-            $artistaOuColetiva = readline("Artista ou 'Coletiva': ");
-            $curador = readline("Curadoria: ");
+            echo "\n--- Editar Evento ---\n";
 
-            $expo = new ExposicaoArte($nome, $data, $local, $artistaOuColetiva, $curador);
-            $repository->adicionar($expo);
-            echo "✅ Exposição de Arte cadastrada!\n";
+            $lista = $repo->listarTodos();
+
+            if (empty($lista)) {
+                echo "Nenhum evento cadastrado.\n";
+                break;
+            }
+
+            foreach ($lista as $i => $ev) {
+                echo "[$i] {$ev->getNome()} | {$ev->getStatus()} | {$ev->getData()}\n";
+            }
+
+            $idx = (int) readline("Índice: ");
+
+            if (!isset($lista[$idx])) {
+                echo "Índice inválido.\n";
+                break;
+            }
+
+            $evento = $lista[$idx];
+            $status = $evento->getStatus(); // preserva status original
+
+            // Campos comuns
+            $novoNome = readline("Novo nome ({$evento->getNome()}): ") ?: $evento->getNome();
+            $novaData = readline("Nova data ({$evento->getData()}): ") ?: $evento->getData();
+            $novoLocal = readline("Novo local ({$evento->getLocal()}): ") ?: $evento->getLocal();
+
+            // Polimorfismo na edição
+            if ($evento instanceof Show) {
+
+                $novoArtista = readline("Novo artista ({$evento->getArtista()}): ") ?: $evento->getArtista();
+                $novoEvento = new Show($novoNome, $novaData, $novoLocal, $novoArtista);
+                $novoEvento->setStatus($status);
+
+            } elseif ($evento instanceof Palestra) {
+
+                $novoPalestrante = readline("Novo palestrante ({$evento->getPalestrante()}): ") ?: $evento->getPalestrante();
+                $novoTema = readline("Novo tema ({$evento->getTema()}): ") ?: $evento->getTema();
+
+                $novoEvento = new Palestra($novoNome, $novaData, $novoLocal, $novoPalestrante, $novoTema);
+                $novoEvento->setStatus($status);
+
+            } elseif ($evento instanceof JogoEsportivo) {
+
+                $novaCasa = readline("Nova equipe da casa ({$evento->getEquipeCasa()}): ") ?: $evento->getEquipeCasa();
+                $novaVisitante = readline("Nova equipe visitante ({$evento->getEquipeVisitante()}): ") ?: $evento->getEquipeVisitante();
+
+                $novoEvento = new JogoEsportivo($novoNome, $novaData, $novoLocal, $novaCasa, $novaVisitante);
+                $novoEvento->setStatus($status);
+            }
+
+            $repo->editar($idx, $novoEvento);
             break;
 
         case 8:
-            echo "\n--- Lista de Eventos Cadastrados ---\n";
-            $eventos = $repository->listarTodos();
-            if (empty($eventos)) {
-                echo "Nenhum evento cadastrado.\n";
+            echo "\n--- Buscar Eventos ---\n";
+            $term = readline("Digite nome, data, local ou tipo: ");
+
+            $resultado = $repo->buscar($term);
+
+            if (empty($resultado)) {
+                echo "Nenhum evento encontrado.\n";
             } else {
-                foreach ($eventos as $evento) {
-                    echo "---------------------------------\n";
-                    echo $evento->exibirDetalhes() . "\n";
+                foreach ($resultado as $ev) {
+                    echo $ev->exibirDetalhes() . "\n------------------\n";
                 }
-                echo "---------------------------------\n";
             }
             break;
 
         case 9:
-            echo "\n--- Relatório de Eventos ---\n";
-            $relatorio = $repository->gerarRelatorio();
-            echo $relatorio;
+            echo "\n--- Alterar Status ---\n";
 
-            // Perguntar se deseja salvar em arquivo
-            $salvar = strtolower(readline("Deseja salvar em 'relatorio.txt'? (s/n): "));
-            if ($salvar === 's') {
-                file_put_contents("relatorio.txt", $relatorio);
-                echo "📄 Relatório salvo em relatorio.txt!\n";
+            $lista = $repo->listarTodos();
+
+            foreach ($lista as $i => $ev) {
+                echo "[$i] {$ev->getNome()} - Status: {$ev->getStatus()}\n";
             }
+
+            $idx = (int) readline("Índice: ");
+
+            echo "1. Ativo\n2. Cancelado\n3. Concluído\n";
+            $s = (int) readline("Opção: ");
+
+            $map = [
+                1 => 'Ativo',
+                2 => 'Cancelado',
+                3 => 'Concluído'
+            ];
+
+            if (!isset($map[$s])) {
+                echo "Opção inválida.\n";
+                break;
+            }
+
+            $repo->atualizarStatus($idx, $map[$s]);
             break;
 
         case 10:
@@ -154,7 +196,6 @@ while (true) {
             exit;
 
         default:
-            echo "Opção inválida. Tente novamente.\n";
-            break;
+            echo "Opção inválida.\n";
     }
 }
