@@ -11,8 +11,13 @@ class Show extends Evento
         $this->artista = $artista;
     }
 
+    public function getArtista(): string
+    {
+        return $this->artista;
+    }
+
     public function exibirDetalhes(): string
     {
-        return "Show: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nArtista: {$this->artista}\n";
+        return "Show: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nArtista: {$this->artista}\nStatus: {$this->status}\n";
     }
 }

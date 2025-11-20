@@ -13,8 +13,18 @@ class Palestra extends Evento
         $this->tema = $tema;
     }
 
+    public function getPalestrante(): string
+    {
+        return $this->palestrante;
+    }
+
+    public function getTema(): string
+    {
+        return $this->tema;
+    }
+
     public function exibirDetalhes(): string
     {
-        return "Palestra: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nPalestrante: {$this->palestrante}\nTema: {$this->tema}\n";
+        return "Palestra: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nPalestrante: {$this->palestrante}\nTema: {$this->tema}\nStatus: {$this->status}\n";
     }
 }

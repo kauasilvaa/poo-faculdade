@@ -15,6 +15,6 @@ class ExposicaoArte extends Evento
 
     public function exibirDetalhes(): string
     {
-        return "Exposição de Arte: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nArtista/Coletiva: {$this->artistaOuColetiva}\nCuradoria: {$this->curador}\n";
+        return "Exposição de Arte: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nArtista/Coletiva: {$this->artistaOuColetiva}\nCuradoria: {$this->curador}\nStatus: {$this->status}\n";
     }
 }

@@ -15,6 +15,6 @@ class FeiraCultural extends Evento
 
     public function exibirDetalhes(): string
     {
-        return "Feira Cultural: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nTema: {$this->tema}\nExpositores: {$this->numeroExpositores}\n";
+        return "Feira Cultural: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nTema: {$this->tema}\nExpositores: {$this->numeroExpositores}\nStatus: {$this->status}\n";
     }
 }

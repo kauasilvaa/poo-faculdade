@@ -15,6 +15,6 @@ class Hackathon extends Evento
 
     public function exibirDetalhes(): string
     {
-        return "Hackathon: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nTema: {$this->tema}\nParticipantes: {$this->participantes}\n";
+        return "Hackathon: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nTema: {$this->tema}\nParticipantes: {$this->participantes}\nStatus: {$this->status}\n";
     }
 }

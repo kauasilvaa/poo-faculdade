@@ -13,8 +13,18 @@ class JogoEsportivo extends Evento
         $this->equipeVisitante = $equipeVisitante;
     }
 
+    public function getEquipeCasa(): string
+    {
+        return $this->equipeCasa;
+    }
+
+    public function getEquipeVisitante(): string
+    {
+        return $this->equipeVisitante;
+    }
+
     public function exibirDetalhes(): string
     {
-        return "Jogo Esportivo: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nCasa: {$this->equipeCasa}\nVisitante: {$this->equipeVisitante}\n";
+        return "Jogo Esportivo: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nCasa: {$this->equipeCasa}\nVisitante: {$this->equipeVisitante}\nStatus: {$this->status}\n";
     }
 }

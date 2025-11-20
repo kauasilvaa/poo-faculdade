@@ -13,8 +13,18 @@ class Workshop extends Evento
         $this->cargaHoraria = $cargaHoraria;
     }
 
+    public function getInstrutor(): string
+    {
+        return $this->instrutor;
+    }
+
+    public function getCargaHoraria(): string
+    {
+        return $this->cargaHoraria;
+    }
+
     public function exibirDetalhes(): string
     {
-        return "Workshop: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nInstrutor: {$this->instrutor}\nCarga horária: {$this->cargaHoraria}\n";
+        return "Workshop: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nInstrutor: {$this->instrutor}\nCarga horária: {$this->cargaHoraria}\nStatus: {$this->status}\n";
     }
 }
