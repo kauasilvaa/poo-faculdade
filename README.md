@@ -2,10 +2,63 @@
 
 ## 👥 Integrantes do Grupo
 
-* **Carlos Heinrich Ribeiro de Oliveira** – RA: 2025953
-* **Kauã Aparecido da Silva** – RA: 2033230
-* **Kaique Geraldo** – RA: 2088626
-* **Mateus Oliveira Algusto** – RA: 2037913
+| Integrante                          | RA      |
+| ----------------------------------- | ------- |
+| Carlos Heinrich Ribeiro de Oliveira | 2025953 |
+| Kauã Aparecido da Silva             | 2033230 |
+| Kaique Geraldo                      | 2088626 |
+| Mateus Oliveira Algusto             | 2037913 |
+
+---
+
+## 🔍 Visão Geral
+
+Este projeto é um **Sistema de Gerenciamento de Eventos** desenvolvido como atividade acadêmica para praticar conceitos de **Programação Orientada a Objetos (POO)** com PHP. O sistema funciona totalmente via **linha de comando** e permite cadastrar e listar vários tipos de eventos.
+
+Ele demonstra, de forma prática, os seguintes conceitos:
+
+* **Classes e Objetos**
+* **Herança** (cada tipo de evento possui sua própria classe)
+* **Polimorfismo** (eventos diferentes possuem comportamentos próprios)
+* **Autoload com Composer** (organização modular)
+
+---
+
+## 🧱 Arquitetura do Código
+
+### **1. Entrada do Sistema**
+
+O arquivo principal é o `index.php`, responsável por:
+
+* Mostrar o menu
+* Ler a opção do usuário
+* Chamar os cadastros específicos de cada tipo de evento
+* Listar todos os eventos
+
+### **2. Hierarquia de Classes**
+
+O sistema possui uma estrutura orientada a objetos, onde:
+
+* `Evento` → **classe base** que contém atributos comuns
+* **Subclasses** → especializações com atributos próprios:
+
+  * `Show`
+  * `Palestra`
+  * `JogoEsportivo`
+  * `Hackathon`
+  * `Workshop`
+  * `FeiraCultural`
+  * `ExposicaoArte`
+
+Cada subclasse implementa os **campos extras** específicos para aquele tipo de evento.
+
+### **3. Armazenamento dos Eventos**
+
+Os eventos são guardados em um **array na memória** enquanto o programa está rodando. Não há salvamento em arquivo ou banco de dados.
+
+### **4. Autoload**
+
+O `composer.json` está configurado para fazer autoload das classes automaticamente, permitindo organização limpa e modular.
 
 ---
 
@@ -15,16 +68,16 @@
 
 ```bash
 git clone https://github.com/kauasilvaa/poo-faculdade.git
-cd repositorio
+cd poo-faculdade
 ```
 
-### **2. Instalar dependências**
+### **2. Atualizar autoload**
 
 ```bash
 composer dump-autoload -o
 ```
 
-### **3. Executar o sistema**
+### **3. Rodar o sistema**
 
 ```bash
 php index.php
@@ -32,43 +85,32 @@ php index.php
 
 ---
 
-## 📝 Sobre o Sistema
+## 📚 Funcionalidades do Sistema
 
-O projeto é um **Sistema de Gerenciamento de Eventos** desenvolvido para treinar diversos conceitos de Programação Orientada a Objetos, como:
+O usuário pode cadastrar e listar os seguintes tipos de eventos:
 
-* Classes e Objetos
-* Herança
-* Polimorfismo
-* Autoload com Composer
+| Tipo de Evento        | Campos Específicos    |
+| --------------------- | --------------------- |
+| **Show**              | Artista/Banda         |
+| **Palestra**          | Palestrante           |
+| **Jogo Esportivo**    | Times/Competidores    |
+| **Hackathon**         | Tema e Participantes  |
+| **Workshop**          | Instrutor e Materiais |
+| **Feira Cultural**    | Expositores           |
+| **Exposição de Arte** | Artista(s) e Obras    |
 
-Ele permite **cadastrar e listar diferentes tipos de eventos**, cada um com dados específicos.
+### 📌 Fluxo Básico de Uso
 
-### 📌 Tipos de Eventos
-
-| Tipo de Evento        | Informações Específicas |
-| --------------------- | ----------------------- |
-| **Show**              | Artista/Banda           |
-| **Palestra**          | Palestrante             |
-| **Jogo Esportivo**    | Times/Competidores      |
-| **Hackathon**         | Tema e Participantes    |
-| **Workshop**          | Instrutor e Materiais   |
-| **Feira Cultural**    | Expositores             |
-| **Exposição de Arte** | Artista(s) e Obras      |
+1. O menu aparece na tela.
+2. O usuário escolhe um tipo de evento.
+3. O sistema pede as informações necessárias.
+4. O evento é criado como um objeto da classe correspondente.
+5. O evento é adicionado à lista interna.
+6. A lista pode ser exibida a qualquer momento pela opção "Listar Eventos".
 
 ---
 
-## 🧭 Como Utilizar
-
-Dentro da pasta do projeto, execute:
-
-```bash
-composer dump-autoload -o
-php index.php
-```
-
-O menu principal será exibido. Basta digitar o número correspondente e preencher as informações solicitadas.
-
-### 📌 Exemplo de Execução
+## 📌 Exemplo de Execução
 
 ```
 --- Sistema de Gerenciamento de Eventos ---
@@ -95,17 +137,29 @@ Artista/Banda: Iron Maiden
 
 ---
 
-## 📌 Observações Importantes
+## ⚠️ Limitações do Projeto
 
-* Os eventos **não são salvos** em arquivo ou banco de dados. Eles permanecem apenas enquanto o programa está em execução.
-* O foco do projeto é o estudo e prática de POO aplicada com Composer.
+* Os eventos **não são salvos** fora do programa.
+* Não há validação de dados complexa.
+* Funciona apenas via **linha de comando**.
 
 ---
 
 ## 🎯 Objetivo do Projeto
 
-Este projeto foi criado para reforçar conhecimentos sobre:
+O objetivo principal é reforçar práticas de POO em PHP:
 
-* Modelagem com classes
+* Organização modular de classes
 * Uso de herança e polimorfismo
-* Estruturação de código com autoload (Composer)
+* Estrutura com autoload via Composer
+* Construção de menus interativos em CLI
+
+---
+
+## 🚀 Possíveis Melhorias Futuras
+
+* Persistência com JSON, CSV ou banco de dados
+* Interface gráfica ou web
+* Exportação de relatórios
+
+---
