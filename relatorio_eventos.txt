@@ -1,0 +1,9 @@
+--- Relatório de Eventos ---
+Evento 1:
+Show: aw
+Data: 12/12/1212
+Local: a
+Artista: a
+Status: Ativo
+
+-------------------------

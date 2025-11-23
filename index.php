@@ -108,9 +108,8 @@ function exibirMenu(): void
     echo "11. Editar Evento\n";
     echo "12. Buscar Eventos\n";
     echo "13. Alterar Status de Evento\n";
-    echo "14. Gerar Relatório\n";
-    echo "15. Exportar Relatório .TXT\n";
-    echo "16. Sair\n";
+    echo "14. Exportar Relatório .TXT\n";
+    echo "15. Sair\n";
 }
 
 while (true) {
@@ -395,21 +394,15 @@ while (true) {
         // --------------------------------------------------
         // 14 – GERAR RELATÓRIO
         // --------------------------------------------------
+     
         case 14:
-            echo $repo->gerarRelatorio();
-            break;
-
-        // --------------------------------------------------
-        // 15 – EXPORTAR .TXT
-        // --------------------------------------------------
-        case 15:
             echo $repo->exportarRelatorioTxt();
             break;
 
         // --------------------------------------------------
         // 16 – SAIR
         // --------------------------------------------------
-        case 16:
+        case 15:
             echo "Saindo...\n";
             exit;
 
