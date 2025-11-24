@@ -93,7 +93,7 @@ class EventoRepository
         return $relatorio;
     }
 
-    // 🔥 NOVA FUNÇÃO — EXPORTAR PARA TXT
+    //  NOVA FUNÇÃO — EXPORTAR PARA TXT
     public function exportarRelatorioTxt(): string
     {
         $conteudo = $this->gerarRelatorio();
