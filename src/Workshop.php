@@ -13,6 +13,7 @@ class Workshop extends Evento
         $this->cargaHoraria = $cargaHoraria;
     }
 
+    // Getters obrigatórios para edição
     public function getInstrutor(): string
     {
         return $this->instrutor;
@@ -23,8 +24,24 @@ class Workshop extends Evento
         return $this->cargaHoraria;
     }
 
+    // Setters para permitir edição
+    public function setInstrutor(string $i): void
+    {
+        $this->instrutor = $i;
+    }
+
+    public function setCargaHoraria(string $c): void
+    {
+        $this->cargaHoraria = $c;
+    }
+
     public function exibirDetalhes(): string
     {
-        return "Workshop: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nInstrutor: {$this->instrutor}\nCarga horária: {$this->cargaHoraria}\nStatus: {$this->status}\n";
+        return "Workshop: {$this->nome}\n"
+             . "Data: {$this->data}\n"
+             . "Local: {$this->local}\n"
+             . "Instrutor: {$this->instrutor}\n"
+             . "Carga horária: {$this->cargaHoraria}\n"
+             . "Status: {$this->status}\n";
     }
 }

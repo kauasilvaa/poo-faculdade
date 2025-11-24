@@ -13,8 +13,35 @@ class ExposicaoArte extends Evento
         $this->curador = $curador;
     }
 
+    // Getters obrigatórios para edição
+    public function getArtista(): string
+    {
+        return $this->artistaOuColetiva;
+    }
+
+    public function getCurador(): string
+    {
+        return $this->curador;
+    }
+
+    // Setters (caso queira editar esses campos)
+    public function setArtista(string $a): void
+    {
+        $this->artistaOuColetiva = $a;
+    }
+
+    public function setCurador(string $c): void
+    {
+        $this->curador = $c;
+    }
+
     public function exibirDetalhes(): string
     {
-        return "Exposição de Arte: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nArtista/Coletiva: {$this->artistaOuColetiva}\nCuradoria: {$this->curador}\nStatus: {$this->status}\n";
+        return "Exposição de Arte: {$this->nome}\n"
+             . "Data: {$this->data}\n"
+             . "Local: {$this->local}\n"
+             . "Artista/Coletiva: {$this->artistaOuColetiva}\n"
+             . "Curadoria: {$this->curador}\n"
+             . "Status: {$this->status}\n";
     }
 }

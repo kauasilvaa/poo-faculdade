@@ -13,6 +13,7 @@ class Palestra extends Evento
         $this->tema = $tema;
     }
 
+    // Getters obrigatórios para edição
     public function getPalestrante(): string
     {
         return $this->palestrante;
@@ -23,8 +24,24 @@ class Palestra extends Evento
         return $this->tema;
     }
 
+    // Setters para permitir edição
+    public function setPalestrante(string $p): void
+    {
+        $this->palestrante = $p;
+    }
+
+    public function setTema(string $t): void
+    {
+        $this->tema = $t;
+    }
+
     public function exibirDetalhes(): string
     {
-        return "Palestra: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nPalestrante: {$this->palestrante}\nTema: {$this->tema}\nStatus: {$this->status}\n";
+        return "Palestra: {$this->nome}\n"
+             . "Data: {$this->data}\n"
+             . "Local: {$this->local}\n"
+             . "Palestrante: {$this->palestrante}\n"
+             . "Tema: {$this->tema}\n"
+             . "Status: {$this->status}\n";
     }
 }

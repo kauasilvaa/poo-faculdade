@@ -11,13 +11,24 @@ class Show extends Evento
         $this->artista = $artista;
     }
 
+    // Getter para edição
     public function getArtista(): string
     {
         return $this->artista;
     }
 
+    // Setter para permitir editar o artista
+    public function setArtista(string $a): void
+    {
+        $this->artista = $a;
+    }
+
     public function exibirDetalhes(): string
     {
-        return "Show: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nArtista: {$this->artista}\nStatus: {$this->status}\n";
+        return "Show: {$this->nome}\n"
+             . "Data: {$this->data}\n"
+             . "Local: {$this->local}\n"
+             . "Artista: {$this->artista}\n"
+             . "Status: {$this->status}\n";
     }
 }

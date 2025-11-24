@@ -13,8 +13,35 @@ class FeiraCultural extends Evento
         $this->numeroExpositores = $numeroExpositores;
     }
 
+    // Getters necessários para edição
+    public function getTema(): string
+    {
+        return $this->tema;
+    }
+
+    public function getExpositores(): int
+    {
+        return $this->numeroExpositores;
+    }
+
+    // Setters caso queira permitir edição
+    public function setTema(string $t): void
+    {
+        $this->tema = $t;
+    }
+
+    public function setExpositores(int $n): void
+    {
+        $this->numeroExpositores = $n;
+    }
+
     public function exibirDetalhes(): string
     {
-        return "Feira Cultural: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nTema: {$this->tema}\nExpositores: {$this->numeroExpositores}\nStatus: {$this->status}\n";
+        return "Feira Cultural: {$this->nome}\n"
+             . "Data: {$this->data}\n"
+             . "Local: {$this->local}\n"
+             . "Tema: {$this->tema}\n"
+             . "Expositores: {$this->numeroExpositores}\n"
+             . "Status: {$this->status}\n";
     }
 }

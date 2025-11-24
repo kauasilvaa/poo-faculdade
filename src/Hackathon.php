@@ -13,8 +13,35 @@ class Hackathon extends Evento
         $this->participantes = $participantes;
     }
 
+    // Getters obrigatórios para edição
+    public function getTema(): string
+    {
+        return $this->tema;
+    }
+
+    public function getParticipantes(): string
+    {
+        return $this->participantes;
+    }
+
+    // Setters usados para edição
+    public function setTema(string $t): void
+    {
+        $this->tema = $t;
+    }
+
+    public function setParticipantes(string $p): void
+    {
+        $this->participantes = $p;
+    }
+
     public function exibirDetalhes(): string
     {
-        return "Hackathon: {$this->nome}\nData: {$this->data}\nLocal: {$this->local}\nTema: {$this->tema}\nParticipantes: {$this->participantes}\nStatus: {$this->status}\n";
+        return "Hackathon: {$this->nome}\n"
+             . "Data: {$this->data}\n"
+             . "Local: {$this->local}\n"
+             . "Tema: {$this->tema}\n"
+             . "Participantes: {$this->participantes}\n"
+             . "Status: {$this->status}\n";
     }
 }
